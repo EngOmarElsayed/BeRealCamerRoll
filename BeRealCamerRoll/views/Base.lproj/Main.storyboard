@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_7" orientation="portrait" appearance="dark"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Camera View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="CameraViewController" customModule="BeRealCamerRoll" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nJd-XQ-h1p" customClass="CameraPreview" customModule="BeRealCamerRoll" customModuleProvider="target">
+                                <rect key="frame" x="10" y="47" width="408" height="648.33333333333337"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ctu-o8-Ha4" customClass="CameraPreview" customModule="BeRealCamerRoll" customModuleProvider="target">
+                                <rect key="frame" x="25.000000000000007" y="57" width="115.66666666666669" height="147"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hUm-8H-u1L">
+                                <rect key="frame" x="156.33333333333334" y="782.66666666666663" width="115.66666666666666" height="108.33333333333337"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain">
+                                    <imageReference key="image" image="circle" catalog="system" symbolScale="medium" variableValue="1"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="79" weight="light"/>
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="captureButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2l3-v2-vKd"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="nJd-XQ-h1p" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.7" id="3pA-Wo-okh"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="hUm-8H-u1L" secondAttribute="bottom" constant="1" id="98i-er-k9G"/>
+                            <constraint firstAttribute="trailing" secondItem="nJd-XQ-h1p" secondAttribute="trailing" constant="10" id="QAB-iE-EvS"/>
+                            <constraint firstItem="ctu-o8-Ha4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="25" id="b9Y-tE-ldk"/>
+                            <constraint firstItem="ctu-o8-Ha4" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.158747" id="fiI-Vs-8mO"/>
+                            <constraint firstItem="ctu-o8-Ha4" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.27" id="h4f-eG-QdJ"/>
+                            <constraint firstItem="hUm-8H-u1L" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="nzT-Z5-HHF"/>
+                            <constraint firstItem="nJd-XQ-h1p" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="sAq-ip-sq5"/>
+                            <constraint firstItem="ctu-o8-Ha4" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="v1d-cI-SED"/>
+                            <constraint firstItem="nJd-XQ-h1p" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="xCD-5G-hf9"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="backCameraView" destination="nJd-XQ-h1p" id="sRa-Fe-6X6"/>
+                        <outlet property="frontCameraView" destination="ctu-o8-Ha4" id="fRs-eQ-XAd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="138.78504672897196" y="3.2397408207343417"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="circle" catalog="system" width="128" height="123"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
