@@ -31,12 +31,35 @@ class CameraViewController: UIViewController {
   @IBAction func captureButton(_ sender: UIButton) {
   }
   
+  @IBAction func switchPreviewPlaces(_ sender: UIButton) {
+    avCapture.stopRunning()
+    avCapture.beginConfiguration()
+    
+    avCapture.removeConnection(backCameraPreviewConnection)
+    avCapture.removeConnection(frontCameraPreviewConnection)
+    
+    backCameraPreviewConnection = AVCaptureConnection(inputPort: backCameraPhotoPorts, videoPreviewLayer: pipDevicePosition == .front ? frontPreview: backPreview)
+    
+    
+    guard avCapture.canAddConnection(backCameraPreviewConnection) else { return }
+    
+    avCapture.addConnection(backCameraPreviewConnection)
+    
+    frontCameraPreviewConnection = AVCaptureConnection(inputPort: frontCameraPhotoPorts, videoPreviewLayer: pipDevicePosition == .front ? backPreview: frontPreview)
+    
+    
+    guard avCapture.canAddConnection(frontCameraPreviewConnection) else { return }
+    
+    avCapture.addConnection(frontCameraPreviewConnection)
+    
+    avCapture.commitConfiguration()
+    avCapture.startRunning()
+    pipDevicePosition = pipDevicePosition == .front ? .back: .front
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     setupView()
-    
-    let togglePiPDoubleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(togglePiP))
-    view.addGestureRecognizer(togglePiPDoubleTapGestureRecognizer)
   }
   
   private func setupView() {
@@ -60,10 +83,8 @@ class CameraViewController: UIViewController {
     frontCameraView.videoPreviewLayer.videoGravity = .resizeAspectFill
     backCameraView.videoPreviewLayer.videoGravity = .resizeAspectFill
     
-    frontCameraView.videoPreviewLayer.borderWidth = 1.0
-    frontCameraView.videoPreviewLayer.borderColor = UIColor.white.cgColor
-    backCameraView.videoPreviewLayer.borderWidth = 1.0
-    backCameraView.videoPreviewLayer.borderColor = UIColor.white.cgColor
+    frontCameraView.videoPreviewLayer.borderWidth = 2.0
+    frontCameraView.videoPreviewLayer.borderColor = UIColor.black.cgColor
     
     frontCameraView.videoPreviewLayer.cornerRadius = 20
     backCameraView.videoPreviewLayer.cornerRadius = 25
@@ -112,33 +133,6 @@ extension CameraViewController {
     
     avCapture.commitConfiguration()
     avCapture.startRunning()
-  }
-  
-  @objc
-  private func togglePiP() {
-    avCapture.stopRunning()
-    avCapture.beginConfiguration()
-    
-    avCapture.removeConnection(backCameraPreviewConnection)
-    avCapture.removeConnection(frontCameraPreviewConnection)
-    
-    backCameraPreviewConnection = AVCaptureConnection(inputPort: backCameraPhotoPorts, videoPreviewLayer: pipDevicePosition == .front ? frontPreview: backPreview)
-    
-    
-    guard avCapture.canAddConnection(backCameraPreviewConnection) else { return }
-    
-    avCapture.addConnection(backCameraPreviewConnection)
-    
-    frontCameraPreviewConnection = AVCaptureConnection(inputPort: frontCameraPhotoPorts, videoPreviewLayer: pipDevicePosition == .front ? backPreview: frontPreview)
-    
-    
-    guard avCapture.canAddConnection(frontCameraPreviewConnection) else { return }
-    
-    avCapture.addConnection(frontCameraPreviewConnection)
-    
-    avCapture.commitConfiguration()
-    avCapture.startRunning()
-    pipDevicePosition = pipDevicePosition == .front ? .back: .front
   }
 }
 
