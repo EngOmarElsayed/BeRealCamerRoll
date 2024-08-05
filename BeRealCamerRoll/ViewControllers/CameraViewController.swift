@@ -12,9 +12,18 @@ class CameraViewController: UIViewController {
   let avCapture: AVCaptureMultiCamSession = AVCaptureMultiCamSession()
   var frontPreview: AVCaptureVideoPreviewLayer!
   var backPreview: AVCaptureVideoPreviewLayer!
+  var backCameraPreviewConnection: AVCaptureConnection!
+  var frontCameraPreviewConnection: AVCaptureConnection!
+  var backCameraPhotoPorts: AVCaptureInput.Port!
+  var frontCameraPhotoPorts: AVCaptureInput.Port!
+  
   
   private let frontCameraPhotoDataOutput = AVCapturePhotoOutput()
   private let sessionQueue = DispatchQueue(label: "session queue") // Communicate with the session and other session objects on this queue.
+  private var pipDevicePosition: AVCaptureDevice.Position = .front
+  
+  @IBOutlet private var frontCameraPiPConstraints: [NSLayoutConstraint]!
+  @IBOutlet private var backCameraPiPConstraints: [NSLayoutConstraint]!
   
   @IBOutlet var frontCameraView: CameraPreview!
   @IBOutlet var backCameraView: CameraPreview!
@@ -25,6 +34,9 @@ class CameraViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     setupView()
+    
+    let togglePiPDoubleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(togglePiP))
+    view.addGestureRecognizer(togglePiPDoubleTapGestureRecognizer)
   }
   
   private func setupView() {
@@ -38,10 +50,10 @@ class CameraViewController: UIViewController {
   }
   
   private func setupPreviewLayers() {
-    frontCameraView.videoPreviewLayer.setSessionWithNoConnection(avCapture)
-    backCameraView.videoPreviewLayer.setSessionWithNoConnection(avCapture)
     frontPreview = frontCameraView.videoPreviewLayer
     backPreview = backCameraView.videoPreviewLayer
+    frontPreview.setSessionWithNoConnection(avCapture)
+    backPreview.setSessionWithNoConnection(avCapture)
   }
   
   private func setupViewAppearance() {
@@ -76,7 +88,7 @@ extension CameraViewController {
     guard avCapture.canAddInput(inputDevice) else { return }
     
     avCapture.addInputWithNoConnections(inputDevice)
-    let frontCameraPhotoPorts = inputDevice.ports(for: .video, sourceDeviceType: frontCamera.deviceType, sourceDevicePosition: frontCamera.position).first!
+    frontCameraPhotoPorts = inputDevice.ports(for: .video, sourceDeviceType: frontCamera.deviceType, sourceDevicePosition: frontCamera.position).first!
     
     
     guard let backCamera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back) else { return }
@@ -84,23 +96,49 @@ extension CameraViewController {
     guard avCapture.canAddInput(backCamerainput) else { return }
     
     avCapture.addInputWithNoConnections(backCamerainput)
-    let backCameraPhotoPorts = backCamerainput.ports(for: .video, sourceDeviceType: backCamera.deviceType, sourceDevicePosition: backCamera.position).first!
+    backCameraPhotoPorts = backCamerainput.ports(for: .video, sourceDeviceType: backCamera.deviceType, sourceDevicePosition: backCamera.position).first!
     
     
-    let backCameraPreviewConnection = AVCaptureConnection(inputPort: backCameraPhotoPorts, videoPreviewLayer: backPreview)
+    backCameraPreviewConnection = AVCaptureConnection(inputPort: backCameraPhotoPorts, videoPreviewLayer: backPreview)
     guard avCapture.canAddConnection(backCameraPreviewConnection) else { return }
     
     avCapture.addConnection(backCameraPreviewConnection)
     
-    let frontCameraPreviewConnection = AVCaptureConnection(inputPort: frontCameraPhotoPorts, videoPreviewLayer: frontPreview)
+    frontCameraPreviewConnection = AVCaptureConnection(inputPort: frontCameraPhotoPorts, videoPreviewLayer: frontPreview)
     guard avCapture.canAddConnection(frontCameraPreviewConnection) else { return }
     
     avCapture.addConnection(frontCameraPreviewConnection)
-    frontCameraPreviewConnection.automaticallyAdjustsVideoMirroring = false
-    frontCameraPreviewConnection.isVideoMirrored = true
+
     
     avCapture.commitConfiguration()
     avCapture.startRunning()
+  }
+  
+  @objc
+  private func togglePiP() {
+    avCapture.stopRunning()
+    avCapture.beginConfiguration()
+    
+    avCapture.removeConnection(backCameraPreviewConnection)
+    avCapture.removeConnection(frontCameraPreviewConnection)
+    
+    backCameraPreviewConnection = AVCaptureConnection(inputPort: backCameraPhotoPorts, videoPreviewLayer: pipDevicePosition == .front ? frontPreview: backPreview)
+    
+    
+    guard avCapture.canAddConnection(backCameraPreviewConnection) else { return }
+    
+    avCapture.addConnection(backCameraPreviewConnection)
+    
+    frontCameraPreviewConnection = AVCaptureConnection(inputPort: frontCameraPhotoPorts, videoPreviewLayer: pipDevicePosition == .front ? backPreview: frontPreview)
+    
+    
+    guard avCapture.canAddConnection(frontCameraPreviewConnection) else { return }
+    
+    avCapture.addConnection(frontCameraPreviewConnection)
+    
+    avCapture.commitConfiguration()
+    avCapture.startRunning()
+    pipDevicePosition = pipDevicePosition == .front ? .back: .front
   }
 }
 
