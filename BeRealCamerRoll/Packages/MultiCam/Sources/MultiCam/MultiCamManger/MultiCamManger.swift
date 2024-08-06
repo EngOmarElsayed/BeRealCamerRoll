@@ -21,6 +21,9 @@ public final class MultiCamManger {
   private var backCameraInputPorts: AVCaptureDeviceInput.Port?
   private var frontCameraPreviewPosition: AVCaptureDevice.Position = .front
   
+  private var frontCameraOutput: AVCapturePhotoOutput = AVCapturePhotoOutput()
+  private var backCameraOutput: AVCapturePhotoOutput = AVCapturePhotoOutput()
+  
   public init() {}
 }
 
@@ -45,7 +48,7 @@ extension MultiCamManger: MultiCamMangerProtocol {
       guard let self else { return }
       setUpInputPorts()
       setPreviewConnection()
-      // private method set output
+      setupOutput()
       multiCamSession.startRunning()
     }
   }
@@ -97,7 +100,16 @@ extension MultiCamManger {
     return connection
   }
   
-  private func setConnectionBetween(_ input:  AVCaptureInput.Port, _ output: AVCaptureOutput) {}
+  private func setupOutput() {
+    setConnectionBetween(frontCameraInputPorts!, frontCameraOutput)
+    setConnectionBetween(backCameraInputPorts!, backCameraOutput)
+  }
+  
+  private func setConnectionBetween(_ input:  AVCaptureInput.Port, _ output: AVCaptureOutput) {
+    let connection = AVCaptureConnection(inputPorts: [input], output: output)
+    guard multiCamSession.canAddConnection(connection) else { return }
+    multiCamSession.addConnection(connection)
+  }
   
   private func cameraInputPorts(for position: AVCaptureDevice.Position) ->  AVCaptureInput.Port? {
     guard let camera = AVCaptureDevice.default(
