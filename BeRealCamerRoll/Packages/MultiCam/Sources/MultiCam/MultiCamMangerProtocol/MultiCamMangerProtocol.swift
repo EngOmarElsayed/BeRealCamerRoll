@@ -7,7 +7,7 @@
 
 import AVFoundation
 
-protocol MultiCamMangerProtocol {
+public protocol MultiCamMangerProtocol {
   func initPreviewLayers(_ frontPreview: AVCaptureVideoPreviewLayer, _ backPreview: AVCaptureVideoPreviewLayer)
   func requestAccess(_ completion: @escaping (Bool) -> Void)
   func setUpCamera()

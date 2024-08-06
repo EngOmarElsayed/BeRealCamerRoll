@@ -1,0 +1,24 @@
+{
+  "originHash" : "8244caacfc1bfe7badb8c4bf6dac1887c6bedfe019c8f261bb0ca9f67e723629",
+  "pins" : [
+    {
+      "identity" : "injection",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/EngOmarElsayed/Injection",
+      "state" : {
+        "revision" : "fc8a56e0e1176d0147242785a936068dcc852159",
+        "version" : "1.4.0"
+      }
+    },
+    {
+      "identity" : "swift-syntax",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-syntax",
+      "state" : {
+        "revision" : "2bc86522d115234d1f588efe2bcb4ce4be8f8b82",
+        "version" : "510.0.3"
+      }
+    }
+  ],
+  "version" : 3
+}

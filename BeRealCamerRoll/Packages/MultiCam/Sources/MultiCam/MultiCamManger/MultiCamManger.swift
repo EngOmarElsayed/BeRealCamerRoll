@@ -20,6 +20,8 @@ public final class MultiCamManger {
   private var frontCameraInputPorts: AVCaptureDeviceInput.Port?
   private var backCameraInputPorts: AVCaptureDeviceInput.Port?
   private var frontCameraPreviewPosition: AVCaptureDevice.Position = .front
+  
+  public init() {}
 }
 
 extension MultiCamManger: MultiCamMangerProtocol {
