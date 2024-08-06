@@ -20,7 +20,7 @@ class CameraViewController: UIViewController {
   }
   
   @IBAction func switchPreviewPlaces(_ sender: UIButton) {
-    
+    viewModel.togglePreviewPlaces()
   }
   
   override func viewDidLoad() {

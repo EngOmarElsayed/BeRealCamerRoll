@@ -17,6 +17,10 @@ extension CameraLogic: CameraLogicProtocol {
     multiCamManger.requestAccess(completion)
   }
   
+  func toggleCameraPreview() {
+    multiCamManger.togglePreviewConnection()
+  }
+  
   func setUpCamera(for preview: PreviewLayerAdaptor) {
     multiCamManger.initPreviewLayers(preview.front, preview.back)
     multiCamManger.setUpCamera()

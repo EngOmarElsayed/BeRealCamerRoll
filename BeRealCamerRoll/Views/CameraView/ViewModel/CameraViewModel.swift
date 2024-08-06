@@ -27,6 +27,10 @@ extension CameraViewModel {
     }
   }
   
+  func togglePreviewPlaces() {
+    cameraLogic.toggleCameraPreview()
+  }
+  
   func setupCamera() {
     guard let previewLayers else { fatalError("previewLayers are equal nil") }
     guard isAccessForCameraAllowed else { return }

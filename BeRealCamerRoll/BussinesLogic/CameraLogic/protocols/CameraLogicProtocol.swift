@@ -10,4 +10,5 @@ import Foundation
 protocol CameraLogicProtocol {
   func requestAccessForCamera(_ completion: @escaping (Bool) -> Void)
   func setUpCamera(for preview: PreviewLayerAdaptor)
+  func toggleCameraPreview()
 }

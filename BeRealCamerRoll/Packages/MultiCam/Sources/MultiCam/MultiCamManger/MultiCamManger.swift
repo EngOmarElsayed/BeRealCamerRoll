@@ -55,13 +55,17 @@ extension MultiCamManger: MultiCamMangerProtocol {
       guard let self else { return }
       multiCamSession.beginConfiguration()
       defer { multiCamSession.commitConfiguration() }
+      multiCamSession.removeConnection(frontPreviewConnection!)
+      multiCamSession.removeConnection(backPreviewConnection!)
       
       if frontCameraPreviewPosition == .front {
         frontPreviewConnection = setConnectionBetween(frontCameraInputPorts!, backPreviewLayer!)
         backPreviewConnection = setConnectionBetween(backCameraInputPorts!, frontPreviewLayer!)
+        frontCameraPreviewPosition = .back
       } else {
         frontPreviewConnection = setConnectionBetween(frontCameraInputPorts!, frontPreviewLayer!)
         backPreviewConnection = setConnectionBetween(backCameraInputPorts!, backPreviewLayer!)
+        frontCameraPreviewPosition = .front
       }
     }
   }
