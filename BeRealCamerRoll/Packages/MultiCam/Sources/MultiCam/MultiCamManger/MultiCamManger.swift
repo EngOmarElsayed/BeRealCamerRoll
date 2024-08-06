@@ -22,8 +22,7 @@ public final class MultiCamManger {
   private var frontCameraPreviewPosition: AVCaptureDevice.Position = .front
 }
 
-#warning("Don't forget to create protocol conformance that will contain all the methods")
-extension MultiCamManger {
+extension MultiCamManger: MultiCamMangerProtocol {
   public func initPreviewLayers(_ frontPreview: AVCaptureVideoPreviewLayer, _ backPreview: AVCaptureVideoPreviewLayer) {
     frontPreviewLayer = frontPreview
     backPreviewLayer = backPreview
