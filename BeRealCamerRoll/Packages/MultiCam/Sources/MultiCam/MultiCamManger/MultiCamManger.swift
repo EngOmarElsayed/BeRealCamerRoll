@@ -24,6 +24,13 @@ public final class MultiCamManger {
   private var frontCameraOutput: AVCapturePhotoOutput = AVCapturePhotoOutput()
   private var backCameraOutput: AVCapturePhotoOutput = AVCapturePhotoOutput()
   
+  private lazy var captureSettings: AVCapturePhotoSettings = {
+    let settings = AVCapturePhotoSettings()
+    settings.flashMode = .auto
+    
+    return settings
+  }()
+  
   public init() {}
 }
 
@@ -51,6 +58,13 @@ extension MultiCamManger: MultiCamMangerProtocol {
       setupOutput()
       multiCamSession.startRunning()
     }
+  }
+  
+  public func captureImages(_ frontCameraCompletion: @escaping (Data?) -> Void, _ backCameraCompletion: @escaping (Data?) -> Void) {
+    let frontCameraDelegate = FrontCameraImageProcessor(frontCameraCompletion: frontCameraCompletion)
+    let backCameraDelegate = BackCameraImageProcessor(backCameraCompletion: backCameraCompletion)
+    frontCameraOutput.capturePhoto(with: AVCapturePhotoSettings(from: captureSettings), delegate: frontCameraDelegate)
+    backCameraOutput.capturePhoto(with: AVCapturePhotoSettings(from: captureSettings), delegate: backCameraDelegate)
   }
   
   public func togglePreviewConnection() {
