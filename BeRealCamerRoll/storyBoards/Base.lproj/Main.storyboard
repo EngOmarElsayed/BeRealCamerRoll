@@ -76,14 +76,6 @@
                     <connections>
                         <outlet property="backCameraView" destination="nJd-XQ-h1p" id="sRa-Fe-6X6"/>
                         <outlet property="frontCameraView" destination="ctu-o8-Ha4" id="fRs-eQ-XAd"/>
-                        <outletCollection property="frontCameraPiPConstraints" destination="h4f-eG-QdJ" collectionClass="NSMutableArray" id="w4M-XK-p8m"/>
-                        <outletCollection property="frontCameraPiPConstraints" destination="fiI-Vs-8mO" collectionClass="NSMutableArray" id="SRv-Jp-Oqu"/>
-                        <outletCollection property="frontCameraPiPConstraints" destination="b9Y-tE-ldk" collectionClass="NSMutableArray" id="KD7-bQ-WSs"/>
-                        <outletCollection property="frontCameraPiPConstraints" destination="v1d-cI-SED" collectionClass="NSMutableArray" id="Agh-qw-VPE"/>
-                        <outletCollection property="backCameraPiPConstraints" destination="sAq-ip-sq5" collectionClass="NSMutableArray" id="WXk-hq-mzh"/>
-                        <outletCollection property="backCameraPiPConstraints" destination="3pA-Wo-okh" collectionClass="NSMutableArray" id="Xa5-EV-Vl5"/>
-                        <outletCollection property="backCameraPiPConstraints" destination="xCD-5G-hf9" collectionClass="NSMutableArray" id="One-6d-Xzv"/>
-                        <outletCollection property="backCameraPiPConstraints" destination="QAB-iE-EvS" collectionClass="NSMutableArray" id="mqI-fo-yF4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -33,7 +33,10 @@ extension MultiCamManger: MultiCamMangerProtocol {
   }
   
   public func requestAccess(_ completion: @escaping (Bool) -> Void) {
-    guard AVCaptureDevice.authorizationStatus(for: .video) != .authorized else { return }
+    guard AVCaptureDevice.authorizationStatus(for: .video) != .authorized else {
+      completion(true)
+      return
+    }
     AVCaptureDevice.requestAccess(for: .video, completionHandler: completion)
   }
   
@@ -43,6 +46,7 @@ extension MultiCamManger: MultiCamMangerProtocol {
       setUpInputPorts()
       setPreviewConnection()
       // private method set output
+      multiCamSession.startRunning()
     }
   }
   
