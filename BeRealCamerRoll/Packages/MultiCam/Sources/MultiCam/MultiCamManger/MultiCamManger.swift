@@ -56,7 +56,7 @@ extension MultiCamManger: MultiCamMangerProtocol {
       guard let self else { return }
       setUpInputPorts()
       setPreviewConnection()
-      setupOutput()
+      setupOutputConnections()
       multiCamSession.startRunning()
     }
   }
@@ -116,18 +116,19 @@ extension MultiCamManger {
     return connection
   }
   
-  private func setupOutput() {
-    setConnectionBetween(frontCameraInputPorts!, frontCameraOutput)
+  private func setupOutputConnections() {
+    setConnectionBetween(frontCameraInputPorts!, frontCameraOutput, isVideoMirrored: true)
     setConnectionBetween(backCameraInputPorts!, backCameraOutput)
   }
   
-  private func setConnectionBetween(_ input:  AVCaptureInput.Port, _ output: AVCapturePhotoOutput) {
+  private func setConnectionBetween(_ input:  AVCaptureInput.Port, _ output: AVCapturePhotoOutput, isVideoMirrored: Bool = false) {
     guard multiCamSession.canAddOutput(output) else { return }
     multiCamSession.addOutputWithNoConnections(output)
     
     let connection = AVCaptureConnection(inputPorts: [input], output: output)
     guard multiCamSession.canAddConnection(connection) else { return }
     multiCamSession.addConnection(connection)
+    connection.isVideoMirrored = isVideoMirrored
   }
   
   private func cameraInputPorts(for position: AVCaptureDevice.Position) ->  AVCaptureInput.Port? {
