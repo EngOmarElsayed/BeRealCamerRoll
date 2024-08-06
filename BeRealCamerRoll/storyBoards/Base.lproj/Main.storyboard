@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--BeReal photo-->
+        <!--Camera Roll-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="CameraViewController" customModule="BeRealCamerRoll" customModuleProvider="target" sceneMemberID="viewController">
@@ -72,15 +72,54 @@
                             <constraint firstItem="nJd-XQ-h1p" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="xCD-5G-hf9"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="BeReal photo" id="FEJ-u1-4T3"/>
+                    <navigationItem key="navigationItem" title="Camera Roll" id="FEJ-u1-4T3"/>
                     <connections>
                         <outlet property="backCameraView" destination="nJd-XQ-h1p" id="sRa-Fe-6X6"/>
                         <outlet property="frontCameraView" destination="ctu-o8-Ha4" id="fRs-eQ-XAd"/>
+                        <segue destination="et1-Ek-PYw" kind="show" identifier="FinalImageSegue" id="lg3-N1-hud"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1038.7850467289718" y="3.2397408207343417"/>
+        </scene>
+        <!--BeReal Picture-->
+        <scene sceneID="HdK-HB-QRp">
+            <objects>
+                <viewController id="et1-Ek-PYw" customClass="ResultedImageViewController" customModule="BeRealCamerRoll" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wcu-bV-fRM">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QgS-Fq-zcj">
+                                <rect key="frame" x="10" y="91" width="408" height="648.33333333333337"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uLa-Ax-YSl">
+                                <rect key="frame" x="25.000000000000007" y="101" width="115.66666666666669" height="147"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="FyQ-1E-4R2"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="uLa-Ax-YSl" firstAttribute="height" secondItem="wcu-bV-fRM" secondAttribute="height" multiplier="0.158747" id="Lm1-Wa-kvV"/>
+                            <constraint firstItem="QgS-Fq-zcj" firstAttribute="top" secondItem="FyQ-1E-4R2" secondAttribute="top" id="QCY-bJ-L5O"/>
+                            <constraint firstItem="QgS-Fq-zcj" firstAttribute="height" secondItem="wcu-bV-fRM" secondAttribute="height" multiplier="0.7" id="QIh-vP-3Sn"/>
+                            <constraint firstItem="QgS-Fq-zcj" firstAttribute="leading" secondItem="FyQ-1E-4R2" secondAttribute="leading" constant="10" id="Wtg-9g-cfY"/>
+                            <constraint firstItem="uLa-Ax-YSl" firstAttribute="width" secondItem="wcu-bV-fRM" secondAttribute="width" multiplier="0.27" id="fLX-ij-Wh1"/>
+                            <constraint firstItem="FyQ-1E-4R2" firstAttribute="trailing" secondItem="QgS-Fq-zcj" secondAttribute="trailing" constant="10" id="g9M-RU-2Hf"/>
+                            <constraint firstItem="uLa-Ax-YSl" firstAttribute="top" secondItem="FyQ-1E-4R2" secondAttribute="top" constant="10" id="hRC-Ei-czk"/>
+                            <constraint firstItem="uLa-Ax-YSl" firstAttribute="leading" secondItem="FyQ-1E-4R2" secondAttribute="leading" constant="25" id="qNa-wq-wz0"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="BeReal Picture" id="UtN-8P-TxB"/>
+                    <connections>
+                        <outlet property="backImageView" destination="QgS-Fq-zcj" id="Xgi-zR-bjx"/>
+                        <outlet property="frontImageView" destination="uLa-Ax-YSl" id="wFx-or-YVB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yYd-UU-tpo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2126.6355140186915" y="2.5917926565874732"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gDC-G0-212">

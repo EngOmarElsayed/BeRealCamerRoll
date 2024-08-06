@@ -11,4 +11,5 @@ import MultiCam
 @InjecteValues extension InjectedValues {
   var multiCamManger: MultiCamMangerProtocol = MultiCamManger()
   var cameraLogic: CameraLogicProtocol = CameraLogic()
+  var finalImageLogic: FinalImageLogicProtocol = FinalImageLogic()
 }

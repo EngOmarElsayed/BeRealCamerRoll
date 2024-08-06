@@ -11,6 +11,6 @@ public protocol MultiCamMangerProtocol {
   func initPreviewLayers(_ frontPreview: AVCaptureVideoPreviewLayer, _ backPreview: AVCaptureVideoPreviewLayer)
   func requestAccess(_ completion: @escaping (Bool) -> Void)
   func setUpCamera()
-  func captureImages(_ frontCameraCompletion: @escaping (Data?) -> Void, _ backCameraCompletion: @escaping (Data?) -> Void)
+  func captureImages(frontCameraCompletion: @escaping (Data?) -> Void, backCameraCompletion: @escaping (Data?) -> Void)
   func togglePreviewConnection()
 }

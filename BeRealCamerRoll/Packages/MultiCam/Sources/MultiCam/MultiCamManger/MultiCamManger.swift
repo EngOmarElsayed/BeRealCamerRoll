@@ -13,7 +13,6 @@ public final class MultiCamManger {
   
   private var frontPreviewLayer: AVCaptureVideoPreviewLayer?
   private var backPreviewLayer: AVCaptureVideoPreviewLayer?
-  
   private var frontPreviewConnection: AVCaptureConnection?
   private var backPreviewConnection: AVCaptureConnection?
   
@@ -23,10 +22,12 @@ public final class MultiCamManger {
   
   private var frontCameraOutput: AVCapturePhotoOutput = AVCapturePhotoOutput()
   private var backCameraOutput: AVCapturePhotoOutput = AVCapturePhotoOutput()
+  private var frontCameraImageProcessor: FrontCameraImageProcessor = FrontCameraImageProcessor()
+  private var backCameraImageProcessor: BackCameraImageProcessor = BackCameraImageProcessor()
   
   private lazy var captureSettings: AVCapturePhotoSettings = {
     let settings = AVCapturePhotoSettings()
-    settings.flashMode = .auto
+    settings.flashMode = .off
     
     return settings
   }()
@@ -60,11 +61,12 @@ extension MultiCamManger: MultiCamMangerProtocol {
     }
   }
   
-  public func captureImages(_ frontCameraCompletion: @escaping (Data?) -> Void, _ backCameraCompletion: @escaping (Data?) -> Void) {
-    let frontCameraDelegate = FrontCameraImageProcessor(frontCameraCompletion: frontCameraCompletion)
-    let backCameraDelegate = BackCameraImageProcessor(backCameraCompletion: backCameraCompletion)
-    frontCameraOutput.capturePhoto(with: AVCapturePhotoSettings(from: captureSettings), delegate: frontCameraDelegate)
-    backCameraOutput.capturePhoto(with: AVCapturePhotoSettings(from: captureSettings), delegate: backCameraDelegate)
+  public func captureImages(frontCameraCompletion: @escaping (Data?) -> Void, backCameraCompletion: @escaping (Data?) -> Void) {
+    frontCameraImageProcessor.frontCameraCompletion = frontCameraCompletion
+    backCameraImageProcessor.backCameraCompletion = backCameraCompletion
+    
+    frontCameraOutput.capturePhoto(with: AVCapturePhotoSettings(from: captureSettings), delegate: frontCameraImageProcessor)
+    backCameraOutput.capturePhoto(with: AVCapturePhotoSettings(from: captureSettings), delegate: backCameraImageProcessor)
   }
   
   public func togglePreviewConnection() {
@@ -119,7 +121,10 @@ extension MultiCamManger {
     setConnectionBetween(backCameraInputPorts!, backCameraOutput)
   }
   
-  private func setConnectionBetween(_ input:  AVCaptureInput.Port, _ output: AVCaptureOutput) {
+  private func setConnectionBetween(_ input:  AVCaptureInput.Port, _ output: AVCapturePhotoOutput) {
+    guard multiCamSession.canAddOutput(output) else { return }
+    multiCamSession.addOutputWithNoConnections(output)
+    
     let connection = AVCaptureConnection(inputPorts: [input], output: output)
     guard multiCamSession.canAddConnection(connection) else { return }
     multiCamSession.addConnection(connection)

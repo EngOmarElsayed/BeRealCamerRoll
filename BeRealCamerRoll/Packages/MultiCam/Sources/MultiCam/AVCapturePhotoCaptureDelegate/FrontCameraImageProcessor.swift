@@ -7,20 +7,17 @@
 
 import AVFoundation
 
-final class FrontCameraImageProcessor: NSObject {
-  private var frontCameraCompletion: ((Data?) -> Void)
-  
-  init(frontCameraCompletion: @escaping (Data?) -> Void) {
-    self.frontCameraCompletion = frontCameraCompletion
-  }
+final class FrontCameraImageProcessor: NSObject, AVCapturePhotoCaptureDelegate {
+  var frontCameraCompletion: ((Data?) -> Void) = { _ in }
 }
 
-extension FrontCameraImageProcessor: AVCapturePhotoCaptureDelegate {
+extension FrontCameraImageProcessor {
   func photoOutput(
     _ output: AVCapturePhotoOutput,
     didFinishProcessingPhoto photo: AVCapturePhoto,
     error: (any Error)?
   ) {
+    
     if error == nil {
       frontCameraCompletion(photo.fileDataRepresentation())
     }

@@ -16,7 +16,7 @@ class CameraViewController: UIViewController {
   @IBOutlet var backCameraView: CameraPreview!
   
   @IBAction func captureButton(_ sender: UIButton) {
-    
+    performSegue(withIdentifier: "FinalImageSegue", sender: nil)
   }
   
   @IBAction func switchPreviewPlaces(_ sender: UIButton) {

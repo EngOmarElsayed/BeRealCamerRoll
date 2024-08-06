@@ -8,11 +8,7 @@
 import AVFoundation
 
 final class BackCameraImageProcessor: NSObject {
-  private var backCameraCompletion: ((Data?) -> Void)
-  
-  init(backCameraCompletion: @escaping (Data?) -> Void) {
-    self.backCameraCompletion = backCameraCompletion
-  }
+  var backCameraCompletion: ((Data?) -> Void) = { _ in }
 }
 
 extension BackCameraImageProcessor: AVCapturePhotoCaptureDelegate {

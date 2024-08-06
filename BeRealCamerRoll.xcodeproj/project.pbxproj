@@ -14,6 +14,10 @@
 		264C66BF2C6237C900CA4796 /* PreviewLayerAdaptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264C66BE2C6237C900CA4796 /* PreviewLayerAdaptor.swift */; };
 		264C66C42C6238F000CA4796 /* CameraLogicProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264C66C32C6238F000CA4796 /* CameraLogicProtocol.swift */; };
 		264C66C92C623B3400CA4796 /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264C66C82C623B3400CA4796 /* CameraViewModel.swift */; };
+		264C66CD2C6284F800CA4796 /* ResultedImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264C66CC2C6284F800CA4796 /* ResultedImageViewController.swift */; };
+		264C66D02C6286AC00CA4796 /* FinalImageLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264C66CF2C6286AC00CA4796 /* FinalImageLogic.swift */; };
+		264C66D42C6287C800CA4796 /* FinalImageLogicProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264C66D32C6287C800CA4796 /* FinalImageLogicProtocol.swift */; };
+		264C66D72C6288CA00CA4796 /* FinalImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264C66D62C6288CA00CA4796 /* FinalImageViewModel.swift */; };
 		266EC8A12C5F9B4F0080F8B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266EC8A02C5F9B4F0080F8B1 /* AppDelegate.swift */; };
 		266EC8A32C5F9B4F0080F8B1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266EC8A22C5F9B4F0080F8B1 /* SceneDelegate.swift */; };
 		266EC8A52C5F9B4F0080F8B1 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266EC8A42C5F9B4F0080F8B1 /* CameraViewController.swift */; };
@@ -30,6 +34,10 @@
 		264C66BE2C6237C900CA4796 /* PreviewLayerAdaptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewLayerAdaptor.swift; sourceTree = "<group>"; };
 		264C66C32C6238F000CA4796 /* CameraLogicProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraLogicProtocol.swift; sourceTree = "<group>"; };
 		264C66C82C623B3400CA4796 /* CameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
+		264C66CC2C6284F800CA4796 /* ResultedImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultedImageViewController.swift; sourceTree = "<group>"; };
+		264C66CF2C6286AC00CA4796 /* FinalImageLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalImageLogic.swift; sourceTree = "<group>"; };
+		264C66D32C6287C800CA4796 /* FinalImageLogicProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalImageLogicProtocol.swift; sourceTree = "<group>"; };
+		264C66D62C6288CA00CA4796 /* FinalImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalImageViewModel.swift; sourceTree = "<group>"; };
 		266EC89D2C5F9B4F0080F8B1 /* BeRealCamerRoll.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeRealCamerRoll.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		266EC8A02C5F9B4F0080F8B1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		266EC8A22C5F9B4F0080F8B1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -74,6 +82,7 @@
 		264C66B12C62348E00CA4796 /* BussinesLogic */ = {
 			isa = PBXGroup;
 			children = (
+				264C66CE2C62868C00CA4796 /* FinalImageLogic */,
 				264C66C02C6238C100CA4796 /* CameraLogic */,
 			);
 			path = BussinesLogic;
@@ -152,6 +161,56 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		264C66CA2C6284CC00CA4796 /* ResultedImageView */ = {
+			isa = PBXGroup;
+			children = (
+				264C66D52C6288AC00CA4796 /* ViewModel */,
+				264C66CB2C6284DF00CA4796 /* VC */,
+			);
+			path = ResultedImageView;
+			sourceTree = "<group>";
+		};
+		264C66CB2C6284DF00CA4796 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				264C66CC2C6284F800CA4796 /* ResultedImageViewController.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		264C66CE2C62868C00CA4796 /* FinalImageLogic */ = {
+			isa = PBXGroup;
+			children = (
+				264C66D22C6287B800CA4796 /* protocol */,
+				264C66D12C6287B100CA4796 /* Model */,
+			);
+			path = FinalImageLogic;
+			sourceTree = "<group>";
+		};
+		264C66D12C6287B100CA4796 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				264C66CF2C6286AC00CA4796 /* FinalImageLogic.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		264C66D22C6287B800CA4796 /* protocol */ = {
+			isa = PBXGroup;
+			children = (
+				264C66D32C6287C800CA4796 /* FinalImageLogicProtocol.swift */,
+			);
+			path = protocol;
+			sourceTree = "<group>";
+		};
+		264C66D52C6288AC00CA4796 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				264C66D62C6288CA00CA4796 /* FinalImageViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		266EC8942C5F9B4F0080F8B1 = {
 			isa = PBXGroup;
 			children = (
@@ -189,6 +248,7 @@
 			isa = PBXGroup;
 			children = (
 				264C66C52C623A9900CA4796 /* CameraView */,
+				264C66CA2C6284CC00CA4796 /* ResultedImageView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -283,11 +343,15 @@
 			files = (
 				264C66BF2C6237C900CA4796 /* PreviewLayerAdaptor.swift in Sources */,
 				266EC8A52C5F9B4F0080F8B1 /* CameraViewController.swift in Sources */,
+				264C66CD2C6284F800CA4796 /* ResultedImageViewController.swift in Sources */,
 				264C66B92C62356700CA4796 /* Dependencie.swift in Sources */,
+				264C66D72C6288CA00CA4796 /* FinalImageViewModel.swift in Sources */,
 				266EC8B72C5FA0240080F8B1 /* CameraPreview.swift in Sources */,
 				266EC8A12C5F9B4F0080F8B1 /* AppDelegate.swift in Sources */,
+				264C66D02C6286AC00CA4796 /* FinalImageLogic.swift in Sources */,
 				264C66C92C623B3400CA4796 /* CameraViewModel.swift in Sources */,
 				264C66C42C6238F000CA4796 /* CameraLogicProtocol.swift in Sources */,
+				264C66D42C6287C800CA4796 /* FinalImageLogicProtocol.swift in Sources */,
 				264C66B32C6234A400CA4796 /* CameraLogic.swift in Sources */,
 				266EC8A32C5F9B4F0080F8B1 /* SceneDelegate.swift in Sources */,
 			);
