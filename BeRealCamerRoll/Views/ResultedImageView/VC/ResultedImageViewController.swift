@@ -15,6 +15,10 @@ class ResultedImageViewController: UIViewController {
   @IBOutlet var frontImageView: UIImageView!
   @IBOutlet var backImageView: UIImageView!
   
+  @IBAction func doneAction(_ sender: UIBarButtonItem) {
+    self.navigationController?.popViewController(animated: true)
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     setupViewController()
@@ -40,6 +44,7 @@ extension ResultedImageViewController {
     
     frontImageView.clipsToBounds = true
     backImageView.clipsToBounds = true
+    navigationItem.setHidesBackButton(true, animated: false)
   }
   
   private func subscribeToPublishers() {

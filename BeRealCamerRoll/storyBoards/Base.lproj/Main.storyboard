@@ -111,7 +111,13 @@
                             <constraint firstItem="uLa-Ax-YSl" firstAttribute="leading" secondItem="FyQ-1E-4R2" secondAttribute="leading" constant="25" id="qNa-wq-wz0"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="BeReal Picture" id="UtN-8P-TxB"/>
+                    <navigationItem key="navigationItem" title="BeReal Picture" id="UtN-8P-TxB">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="eeh-wi-H5s">
+                            <connections>
+                                <action selector="doneAction:" destination="et1-Ek-PYw" id="OEw-Xo-v5W"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="backImageView" destination="QgS-Fq-zcj" id="Xgi-zR-bjx"/>
                         <outlet property="frontImageView" destination="uLa-Ax-YSl" id="wFx-or-YVB"/>
