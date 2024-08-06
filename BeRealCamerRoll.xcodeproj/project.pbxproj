@@ -17,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		264C66B02C6216A400CA4796 /* MultiCam */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = MultiCam; sourceTree = "<group>"; };
 		266EC89D2C5F9B4F0080F8B1 /* BeRealCamerRoll.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeRealCamerRoll.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		266EC8A02C5F9B4F0080F8B1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		266EC8A22C5F9B4F0080F8B1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -39,6 +40,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		264C66AE2C6215E900CA4796 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				264C66B02C6216A400CA4796 /* MultiCam */,
+			);
+			path = Packages;
+			sourceTree = "<group>";
+		};
+		264C66AF2C6215F500CA4796 /* AppDelegates */ = {
+			isa = PBXGroup;
+			children = (
+				266EC8A02C5F9B4F0080F8B1 /* AppDelegate.swift */,
+				266EC8A22C5F9B4F0080F8B1 /* SceneDelegate.swift */,
+			);
+			path = AppDelegates;
+			sourceTree = "<group>";
+		};
 		266EC8942C5F9B4F0080F8B1 = {
 			isa = PBXGroup;
 			children = (
@@ -58,8 +76,8 @@
 		266EC89F2C5F9B4F0080F8B1 /* BeRealCamerRoll */ = {
 			isa = PBXGroup;
 			children = (
-				266EC8A02C5F9B4F0080F8B1 /* AppDelegate.swift */,
-				266EC8A22C5F9B4F0080F8B1 /* SceneDelegate.swift */,
+				264C66AF2C6215F500CA4796 /* AppDelegates */,
+				264C66AE2C6215E900CA4796 /* Packages */,
 				266EC8B52C5F9FF10080F8B1 /* views */,
 				266EC8B42C5F9FDF0080F8B1 /* ViewControllers */,
 				266EC8A92C5F9B510080F8B1 /* Assets.xcassets */,
