@@ -16,6 +16,10 @@ class FinalImageViewModel {
 }
 
 extension FinalImageViewModel {
+  func toggleImagePlaces() {
+    (frontImage, backImage) = (backImage, frontImage)
+  }
+  
   func captureImages() {
     finalImageLogic.captureImage { [weak self] frontImageData in
       guard let self, let frontImageData else { return }

@@ -45,6 +45,10 @@ extension ResultedImageViewController {
     frontImageView.clipsToBounds = true
     backImageView.clipsToBounds = true
     navigationItem.setHidesBackButton(true, animated: false)
+    
+    let tapGesture = UITapGestureRecognizer(target: self, action: #selector(toggleImagePlaces))
+    frontImageView.addGestureRecognizer(tapGesture)
+    frontImageView.isUserInteractionEnabled = true
   }
   
   private func subscribeToPublishers() {
@@ -57,5 +61,9 @@ extension ResultedImageViewController {
       guard let self else { return }
       backImageView.image = backImage
     }.store(in: &cancellable)
+  }
+  
+  @objc private func toggleImagePlaces() {
+    viewModel.toggleImagePlaces()
   }
 }
