@@ -22,7 +22,7 @@ class ResultedImageViewController: UIViewController {
   }
   
   @IBAction func shareButton(_ sender: UIButton) {
-    let shareSheet = UIActivityViewController(activityItems: ["How are you"], applicationActivities: nil)
+    let shareSheet = UIActivityViewController(activityItems: [convertViewToImage()], applicationActivities: nil)
     present(shareSheet, animated: true)
   }
   
@@ -71,6 +71,13 @@ extension ResultedImageViewController {
       guard let self else { return }
       backImageView.image = backImage
     }.store(in: &cancellable)
+  }
+  
+  private func convertViewToImage() -> UIImage {
+    let render = UIGraphicsImageRenderer(size: finalImageView.bounds.size)
+    return render.image { _ in
+      finalImageView.drawHierarchy(in: finalImageView.bounds, afterScreenUpdates: true)
+    }
   }
   
   @objc private func toggleImagePlaces() {
