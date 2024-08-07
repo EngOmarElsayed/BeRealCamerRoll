@@ -12,11 +12,18 @@ class ResultedImageViewController: UIViewController {
   private let viewModel = FinalImageViewModel()
   private var cancellable = Set<AnyCancellable>()
   
+  @IBOutlet var shareButton: UIButton!
   @IBOutlet var frontImageView: UIImageView!
   @IBOutlet var backImageView: UIImageView!
+  @IBOutlet var finalImageView: UIView!
   
   @IBAction func doneAction(_ sender: UIBarButtonItem) {
     self.navigationController?.popViewController(animated: true)
+  }
+  
+  @IBAction func shareButton(_ sender: UIButton) {
+    let shareSheet = UIActivityViewController(activityItems: ["How are you"], applicationActivities: nil)
+    present(shareSheet, animated: true)
   }
   
   override func viewDidLoad() {
@@ -49,6 +56,9 @@ extension ResultedImageViewController {
     let tapGesture = UITapGestureRecognizer(target: self, action: #selector(toggleImagePlaces))
     frontImageView.addGestureRecognizer(tapGesture)
     frontImageView.isUserInteractionEnabled = true
+    
+    shareButton.backgroundColor = .black.withAlphaComponent(0.5)
+    shareButton.layer.cornerRadius = 15
   }
   
   private func subscribeToPublishers() {
