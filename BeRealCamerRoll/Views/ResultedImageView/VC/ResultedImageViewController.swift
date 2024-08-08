@@ -7,6 +7,7 @@
 
 import UIKit
 import Combine
+import LinkPresentation
 
 class ResultedImageViewController: UIViewController {
   private let viewModel = FinalImageViewModel()
@@ -22,7 +23,7 @@ class ResultedImageViewController: UIViewController {
   }
   
   @IBAction func shareButton(_ sender: UIButton) {
-    let shareSheet = UIActivityViewController(activityItems: [convertViewToImage()], applicationActivities: nil)
+    let shareSheet = UIActivityViewController(activityItems: [convertViewToImage(), self], applicationActivities: nil)
     present(shareSheet, animated: true)
   }
   
@@ -82,5 +83,28 @@ extension ResultedImageViewController {
   
   @objc private func toggleImagePlaces() {
     viewModel.toggleImagePlaces()
+  }
+}
+
+
+extension ResultedImageViewController: UIActivityItemSource {
+  func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any {
+    return ""
+  }
+  
+  func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivity.ActivityType?) -> Any? {
+    return nil
+  }
+  
+  func activityViewControllerLinkMetadata(_ activityViewController: UIActivityViewController) -> LPLinkMetadata? {
+    let image = convertViewToImage()
+    let imageProvider = NSItemProvider(object: image)
+    let metadata = LPLinkMetadata()
+    metadata.imageProvider = imageProvider
+    return metadata
+  }
+  
+  func activityViewController(_ activityViewController: UIActivityViewController, thumbnailImageForActivityType activityType: UIActivity.ActivityType?, suggestedSize size: CGSize) -> UIImage? {
+    return convertViewToImage()
   }
 }
