@@ -11,6 +11,7 @@ import LinkPresentation
 
 class ResultedImageViewController: UIViewController {
   private let viewModel = FinalImageViewModel()
+  private var initialCenter: CGPoint = .zero
   private var cancellable = Set<AnyCancellable>()
   
   @IBOutlet var shareButton: UIButton!
@@ -23,8 +24,30 @@ class ResultedImageViewController: UIViewController {
   }
   
   @IBAction func shareButton(_ sender: UIButton) {
-    let shareSheet = UIActivityViewController(activityItems: [convertViewToImage(), self], applicationActivities: nil)
+    let shareSheet = UIActivityViewController(activityItems: [finalImageView.convertViewToImage(), self], applicationActivities: nil)
     present(shareSheet, animated: true)
+  }
+  
+  @IBAction func toggleImagePlaces(_ gestureRecognizer : UITapGestureRecognizer) {
+    viewModel.toggleImagePlaces()
+  }
+  
+  @IBAction func dragGestureAction(_ gestureRecognizer : UIPanGestureRecognizer) {
+    let translation = gestureRecognizer.translation(in: frontImageView.superview)
+    switch gestureRecognizer.state {
+    case .began:
+      initialCenter = frontImageView.center
+    case .changed:
+      let newCenter = CGPoint(x: initialCenter.x + translation.x, y: initialCenter.y + translation.y)
+      frontImageView.center = newCenter
+    default:
+      frontImageView.center = CGPoint(x: backImageView.frame.maxX*0.81, y: initialCenter.y)
+      if translation.x < backImageView.frame.maxX/2-10 {
+        frontImageView.center = CGPoint(x: backImageView.frame.maxX*0.19, y: initialCenter.y)
+      } else {
+        frontImageView.center = CGPoint(x: backImageView.frame.maxX*0.81, y: initialCenter.y)
+      }
+    }
   }
   
   override func viewDidLoad() {
@@ -57,6 +80,8 @@ extension ResultedImageViewController {
     let tapGesture = UITapGestureRecognizer(target: self, action: #selector(toggleImagePlaces))
     frontImageView.addGestureRecognizer(tapGesture)
     frontImageView.isUserInteractionEnabled = true
+    let dragGesture = UIPanGestureRecognizer(target: self, action: #selector(dragGestureAction))
+    frontImageView.addGestureRecognizer(dragGesture)
     
     shareButton.backgroundColor = .black.withAlphaComponent(0.5)
     shareButton.layer.cornerRadius = 15
@@ -73,20 +98,9 @@ extension ResultedImageViewController {
       backImageView.image = backImage
     }.store(in: &cancellable)
   }
-  
-  private func convertViewToImage() -> UIImage {
-    let render = UIGraphicsImageRenderer(size: finalImageView.bounds.size)
-    return render.image { _ in
-      finalImageView.drawHierarchy(in: finalImageView.bounds, afterScreenUpdates: true)
-    }
-  }
-  
-  @objc private func toggleImagePlaces() {
-    viewModel.toggleImagePlaces()
-  }
 }
 
-
+//MARK: -UIActivityItemSource
 extension ResultedImageViewController: UIActivityItemSource {
   func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any {
     return ""
@@ -97,14 +111,10 @@ extension ResultedImageViewController: UIActivityItemSource {
   }
   
   func activityViewControllerLinkMetadata(_ activityViewController: UIActivityViewController) -> LPLinkMetadata? {
-    let image = convertViewToImage()
+    let image = finalImageView.convertViewToImage()
     let imageProvider = NSItemProvider(object: image)
     let metadata = LPLinkMetadata()
     metadata.imageProvider = imageProvider
     return metadata
-  }
-  
-  func activityViewController(_ activityViewController: UIActivityViewController, thumbnailImageForActivityType activityType: UIActivity.ActivityType?, suggestedSize size: CGSize) -> UIImage? {
-    return convertViewToImage()
   }
 }

@@ -25,6 +25,7 @@
 		266EC8AA2C5F9B510080F8B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 266EC8A92C5F9B510080F8B1 /* Assets.xcassets */; };
 		266EC8AD2C5F9B510080F8B1 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 266EC8AC2C5F9B510080F8B1 /* Base */; };
 		266EC8B72C5FA0240080F8B1 /* CameraPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266EC8B62C5FA0240080F8B1 /* CameraPreview.swift */; };
+		26779FA62C64EEBA0026158C /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26779FA52C64EEBA0026158C /* UIView+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		266EC8AC2C5F9B510080F8B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		266EC8AE2C5F9B510080F8B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		266EC8B62C5FA0240080F8B1 /* CameraPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreview.swift; sourceTree = "<group>"; };
+		26779FA52C64EEBA0026158C /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,15 +233,16 @@
 		266EC89F2C5F9B4F0080F8B1 /* BeRealCamerRoll */ = {
 			isa = PBXGroup;
 			children = (
+				266EC8AE2C5F9B510080F8B1 /* Info.plist */,
+				266EC8A92C5F9B510080F8B1 /* Assets.xcassets */,
 				264C66BD2C6237AC00CA4796 /* Adaptors */,
 				264C66AF2C6215F500CA4796 /* AppDelegates */,
 				264C66B12C62348E00CA4796 /* BussinesLogic */,
+				26779FA32C64EE970026158C /* DataTypes */,
 				264C66B72C62350C00CA4796 /* Dependencie */,
 				264C66AE2C6215E900CA4796 /* Packages */,
-				266EC8B42C5F9FDF0080F8B1 /* Views */,
 				266EC8B52C5F9FF10080F8B1 /* storyBoards */,
-				266EC8AE2C5F9B510080F8B1 /* Info.plist */,
-				266EC8A92C5F9B510080F8B1 /* Assets.xcassets */,
+				266EC8B42C5F9FDF0080F8B1 /* Views */,
 			);
 			path = BeRealCamerRoll;
 			sourceTree = "<group>";
@@ -261,6 +264,22 @@
 				266EC8B62C5FA0240080F8B1 /* CameraPreview.swift */,
 			);
 			path = storyBoards;
+			sourceTree = "<group>";
+		};
+		26779FA32C64EE970026158C /* DataTypes */ = {
+			isa = PBXGroup;
+			children = (
+				26779FA42C64EEA00026158C /* Extensions */,
+			);
+			path = DataTypes;
+			sourceTree = "<group>";
+		};
+		26779FA42C64EEA00026158C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				26779FA52C64EEBA0026158C /* UIView+Extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -349,6 +368,7 @@
 				266EC8B72C5FA0240080F8B1 /* CameraPreview.swift in Sources */,
 				266EC8A12C5F9B4F0080F8B1 /* AppDelegate.swift in Sources */,
 				264C66D02C6286AC00CA4796 /* FinalImageLogic.swift in Sources */,
+				26779FA62C64EEBA0026158C /* UIView+Extension.swift in Sources */,
 				264C66C92C623B3400CA4796 /* CameraViewModel.swift in Sources */,
 				264C66C42C6238F000CA4796 /* CameraLogicProtocol.swift in Sources */,
 				264C66D42C6287C800CA4796 /* FinalImageLogicProtocol.swift in Sources */,
@@ -508,13 +528,14 @@
 				DEVELOPMENT_TEAM = 9PYC9KWKRS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BeRealCamerRoll/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = MultiCam;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Allow access to the camera to be able to take pictures through the app";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app saves images to your photot library";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -544,13 +565,14 @@
 				DEVELOPMENT_TEAM = 9PYC9KWKRS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BeRealCamerRoll/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = MultiCam;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Allow access to the camera to be able to take pictures through the app";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app saves images to your photot library";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (

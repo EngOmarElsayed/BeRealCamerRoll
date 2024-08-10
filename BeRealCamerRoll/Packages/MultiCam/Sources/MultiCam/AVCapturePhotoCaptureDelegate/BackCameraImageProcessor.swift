@@ -14,6 +14,12 @@ final class BackCameraImageProcessor: NSObject {
 extension BackCameraImageProcessor: AVCapturePhotoCaptureDelegate {
   func photoOutput(
     _ output: AVCapturePhotoOutput,
+    willBeginCaptureFor resolvedSettings: AVCaptureResolvedPhotoSettings
+  ) {
+    AudioServicesDisposeSystemSoundID(1108)
+  }
+  func photoOutput(
+    _ output: AVCapturePhotoOutput,
     didFinishProcessingPhoto photo: AVCapturePhoto,
     error: (any Error)?
   ) {
