@@ -540,7 +540,7 @@
 				DEVELOPMENT_TEAM = 9PYC9KWKRS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BeRealCamerRoll/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = MultiCam;
+				INFOPLIST_KEY_CFBundleDisplayName = BeRealCamera;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Allow access to the camera to be able to take pictures through the app";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app saves images to your photot library";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -577,7 +577,7 @@
 				DEVELOPMENT_TEAM = 9PYC9KWKRS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BeRealCamerRoll/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = MultiCam;
+				INFOPLIST_KEY_CFBundleDisplayName = BeRealCamera;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Allow access to the camera to be able to take pictures through the app";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app saves images to your photot library";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
