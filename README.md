@@ -9,11 +9,10 @@
 4. [Author](#conclusion)
 
 ## Introduction <a name="introduction"></a>
-This app was created to genrate transcript for videos using SpeechFramwork. This app supports three languages: English (UK), English (US) and Arabic (Egypt). This is a preview of the app 
+This app show case how to use MultiCam api to create the same BeReal photo. This is a preview of the app 
 enjoy 😉:
 
-https://github.com/user-attachments/assets/ee6d8d38-9f59-4c0b-a009-f0ee523d2d55
-
+https://github.com/user-attachments/assets/eff5411e-c468-49d7-b32e-8865aaebde0c
 
 ## Tech <a name="section-1"></a>
 - Swift
