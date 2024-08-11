@@ -26,6 +26,7 @@
 		266EC8AD2C5F9B510080F8B1 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 266EC8AC2C5F9B510080F8B1 /* Base */; };
 		266EC8B72C5FA0240080F8B1 /* CameraPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266EC8B62C5FA0240080F8B1 /* CameraPreview.swift */; };
 		26779FA62C64EEBA0026158C /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26779FA52C64EEBA0026158C /* UIView+Extension.swift */; };
+		26F84B2B2C691BE8008244EB /* SharingImageOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F84B2A2C691BE8008244EB /* SharingImageOption.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		266EC8AE2C5F9B510080F8B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		266EC8B62C5FA0240080F8B1 /* CameraPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreview.swift; sourceTree = "<group>"; };
 		26779FA52C64EEBA0026158C /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		26F84B2A2C691BE8008244EB /* SharingImageOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingImageOption.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -269,6 +271,7 @@
 		26779FA32C64EE970026158C /* DataTypes */ = {
 			isa = PBXGroup;
 			children = (
+				26F84B292C691BC4008244EB /* Enums */,
 				26779FA42C64EEA00026158C /* Extensions */,
 			);
 			path = DataTypes;
@@ -280,6 +283,14 @@
 				26779FA52C64EEBA0026158C /* UIView+Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		26F84B292C691BC4008244EB /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				26F84B2A2C691BE8008244EB /* SharingImageOption.swift */,
+			);
+			path = Enums;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -361,6 +372,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				264C66BF2C6237C900CA4796 /* PreviewLayerAdaptor.swift in Sources */,
+				26F84B2B2C691BE8008244EB /* SharingImageOption.swift in Sources */,
 				266EC8A52C5F9B4F0080F8B1 /* CameraViewController.swift in Sources */,
 				264C66CD2C6284F800CA4796 /* ResultedImageViewController.swift in Sources */,
 				264C66B92C62356700CA4796 /* Dependencie.swift in Sources */,

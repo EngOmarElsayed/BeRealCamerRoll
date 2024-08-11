@@ -23,11 +23,6 @@ class ResultedImageViewController: UIViewController {
     self.navigationController?.popViewController(animated: true)
   }
   
-  @IBAction func shareButton(_ sender: UIButton) {
-    let shareSheet = UIActivityViewController(activityItems: [finalImageView.convertViewToImage(), self], applicationActivities: nil)
-    present(shareSheet, animated: true)
-  }
-  
   @IBAction func toggleImagePlaces(_ gestureRecognizer : UITapGestureRecognizer) {
     viewModel.toggleImagePlaces()
   }
@@ -85,6 +80,8 @@ extension ResultedImageViewController {
     
     shareButton.backgroundColor = .black.withAlphaComponent(0.5)
     shareButton.layer.cornerRadius = 15
+    shareButton.menu = sharingImageMenuOptions()
+    shareButton.showsMenuAsPrimaryAction = true
   }
   
   private func subscribeToPublishers() {
@@ -98,23 +95,34 @@ extension ResultedImageViewController {
       backImageView.image = backImage
     }.store(in: &cancellable)
   }
-}
-
-//MARK: -UIActivityItemSource
-extension ResultedImageViewController: UIActivityItemSource {
-  func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any {
-    return ""
+  
+  private func sharingImageMenuOptions() -> UIMenu {
+    var actions: [UIAction] = []
+    for option in SharingImageOption.allCases {
+      let action = UIAction(title: option.rawValue) { [weak self] action in
+        guard let self else { return }
+        let shareSheet = UIActivityViewController(activityItems: imagesToShare(for: option), applicationActivities: nil)
+        present(shareSheet, animated: true)
+      }
+      
+      actions.append(action)
+    }
+    
+    return UIMenu(title: "", image: UIImage(systemName: "ellipsis.circle"), children: actions)
   }
   
-  func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivity.ActivityType?) -> Any? {
-    return nil
-  }
-  
-  func activityViewControllerLinkMetadata(_ activityViewController: UIActivityViewController) -> LPLinkMetadata? {
-    let image = finalImageView.convertViewToImage()
-    let imageProvider = NSItemProvider(object: image)
-    let metadata = LPLinkMetadata()
-    metadata.imageProvider = imageProvider
-    return metadata
+  private func imagesToShare(for option: SharingImageOption) -> [Any] {
+    var imagesToShare = [Any]()
+    switch option {
+    case .BeRealImage:
+      imagesToShare = [finalImageView.convertViewToImage()]
+    case .frontImage:
+      imagesToShare = [frontImageView.image!]
+    case .backImage:
+      imagesToShare = [backImageView.image!]
+    case .all:
+      imagesToShare = [finalImageView.convertViewToImage(), frontImageView.image!, backImageView.image!]
+    }
+    return imagesToShare
   }
 }
